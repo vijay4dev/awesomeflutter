@@ -32,14 +32,14 @@ class _BatteryRivePageState extends State<BatteryRivePage> {
 
     _controller = StateMachineController.fromArtboard(
       artboard,
-      'battery progress', // ✔ YOUR VIEWMODEL/STATE MACHINE NAME
+      'battery progress', 
     );
 
     if (_controller != null) {
       artboard.addController(_controller!);
 
       progressInput =
-          _controller!.findInput<double>('progress'); // ✔ YOUR INPUT NAME
+          _controller!.findInput<double>('progress'); 
     }
 
     setState(() => _riveArtboard = artboard);
@@ -49,7 +49,7 @@ class _BatteryRivePageState extends State<BatteryRivePage> {
     batteryLevel = await _battery.batteryLevel;
     batteryState = await _battery.batteryState;
 
-    // Update every 5 sec
+    
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       batteryLevel = await _battery.batteryLevel;
       _updateRive();
@@ -67,7 +67,7 @@ class _BatteryRivePageState extends State<BatteryRivePage> {
   void _updateRive() {
     if (progressInput == null) return;
 
-    /// Rive input expects: 0 to 1
+    
     progressInput!.value = batteryLevel / 100;
   }
 
